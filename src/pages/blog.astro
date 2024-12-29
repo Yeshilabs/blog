@@ -1,17 +1,23 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog');
+const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 
 <MainLayout title="Blog">
 	<section class="blog">
 		<h1>Blog</h1>
 		<div class="posts">
-			<article class="post">
-				<time>2024-03-14</time>
-				<h2>Understanding ZK-SNARKs</h2>
-				<p>An introduction to zero-knowledge succinct non-interactive arguments of knowledge.</p>
-				<a href="/blog/understanding-zk-snarks">Read more ></a>
-			</article>
+			{sortedPosts.map((post) => (
+				<article class="post">
+					<time>{post.data.pubDate.toISOString().split('T')[0]}</time>
+					<h2>{post.data.title}</h2>
+					<p>{post.data.description}</p>
+					<a href={`/blog/${post.slug}`}>Read more ></a>
+				</article>
+			))}
 		</div>
 	</section>
 

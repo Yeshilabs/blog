@@ -1,0 +1,58 @@
+---
+import { getCollection } from 'astro:content';
+import MainLayout from '../../layouts/MainLayout.astro';
+
+export async function getStaticPaths() {
+  const blogEntries = await getCollection('blog');
+  return blogEntries.map(entry => ({
+    params: { slug: entry.slug }, props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<MainLayout title={entry.data.title}>
+  <article class="blog-post">
+    <header>
+      <h1>{entry.data.title}</h1>
+      <div class="metadata">
+        <time>{entry.data.pubDate.toISOString().split('T')[0]}</time>
+        <span class="author">By {entry.data.author}</span>
+      </div>
+    </header>
+
+    <div class="content">
+      <Content />
+    </div>
+  </article>
+
+  <style>
+    .blog-post {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .metadata {
+      margin: 1rem 0 2rem;
+      opacity: 0.8;
+    }
+
+    .author {
+      margin-left: 1rem;
+    }
+
+    .content {
+      line-height: 1.8;
+    }
+
+    :global(.content h2) {
+      margin-top: 2rem;
+    }
+
+    :global(.content p) {
+      margin: 1rem 0;
+    }
+  </style>
+</MainLayout> 
