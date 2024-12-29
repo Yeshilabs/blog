@@ -1,71 +1,37 @@
 ---
+import MainLayout from '../layouts/MainLayout.astro';
 import '../styles/global.css';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Yeshilabs | Zero Knowledge Cryptography Research</title>
-	</head>
-	<body>
-		<header>
-			<nav>
-				<a href="/">YESHILABS</a>
-				<div class="nav-links">
-					<a href="/research">Research</a>
-					<a href="/about">About</a>
-					<a href="/blog">Blog</a>
-					<a href="/contact">Contact</a>
-				</div>
-			</nav>
-		</header>
+<MainLayout title="Home">
+	<section class="hero home-section">
+		<h1>Advancing Privacy Through Zero Knowledge</h1>
+		<p class="terminal-text">> Researching and developing scalable blockchain solutions</p>
+	</section>
 
-		<main>
-			<section class="hero">
-				<h1>Advancing Privacy Through Zero Knowledge</h1>
-				<p class="terminal-text">> Researching and developing scalable blockchain solutions</p>
-			</section>
+	<section class="mission home-section">
+		<h2>Our Mission</h2>
+		<p>We're dedicated to advancing blockchain scalability and privacy through zero-knowledge cryptography.</p>
+	</section>
 
-			<section class="mission">
-				<h2>Our Mission</h2>
-				<p>We're dedicated to advancing blockchain scalability and privacy through zero-knowledge cryptography.</p>
-			</section>
-		</main>
+	<style>
+		.home-section {
+			text-align: left;
+			margin: 4rem 0;
+			padding-left: 1rem;
+		}
 
-		<style>
-			nav {
-				display: flex;
-				justify-content: space-between;
-				align-items: center;
-				padding: 1rem 0;
-				margin-bottom: 4rem;
-			}
+		.terminal-text {
+			font-family: var(--font-mono);
+			animation: blink 1s step-end infinite;
+		}
 
-			.nav-links {
-				display: flex;
-				gap: 2rem;
-			}
+		@keyframes blink {
+			50% { opacity: 0; }
+		}
 
-			.hero {
-				margin: 4rem 0;
-			}
-
-			.terminal-text {
-				font-family: var(--font-mono);
-				animation: blink 1s step-end infinite;
-			}
-
-			@keyframes blink {
-				50% { opacity: 0; }
-			}
-
-			section {
-				margin: 2rem 0;
-				max-width: 800px;
-			}
-		</style>
-	</body>
-</html>
+		section {
+			max-width: 800px;
+		}
+	</style>
+</MainLayout>

@@ -8,14 +8,17 @@ import '../styles/global.css';
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title} | Yeshilabs</title>
 	</head>
 	<body>
 		<header>
 			<nav>
-				<a href="/">YESHILABS</a>
+				<a href="/" class="logo">YESHILABS</a>
+				<button class="menu-toggle" aria-label="Toggle navigation">
+					☰
+				</button>
 				<div class="nav-links">
 					<a href="/research">Research</a>
 					<a href="/about">About</a>
@@ -25,23 +28,19 @@ import '../styles/global.css';
 			</nav>
 		</header>
 
-		<main>
+		<main class="content">
 			<slot />
 		</main>
 
-		<style>
-			nav {
-				display: flex;
-				justify-content: space-between;
-				align-items: center;
-				padding: 1rem 0;
-				margin-bottom: 4rem;
-			}
+		<script>
+			document.addEventListener('DOMContentLoaded', () => {
+				const menuToggle = document.querySelector('.menu-toggle');
+				const navLinks = document.querySelector('.nav-links');
 
-			.nav-links {
-				display: flex;
-				gap: 2rem;
-			}
-		</style>
+				menuToggle.addEventListener('click', () => {
+					navLinks.classList.toggle('active');
+				});
+			});
+		</script>
 	</body>
 </html> 

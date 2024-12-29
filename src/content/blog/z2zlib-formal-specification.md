@@ -193,7 +193,7 @@ When no more updates are desired:
    Both participants finalize with a last message:
    
    $$M_f = (f, h(S_f), h(m_{f-1}), σ_p(f || h(S_f) || h(m_{f-1})))$$
-   $$q \space countersigns: σ_q(M_f)$$
+   $$q \space \text{countersigns:} σ_q(M_f)$$
    
    They now have mutually signed final state data.
 
@@ -213,23 +213,23 @@ When no more updates are desired:
 ### State Transition Circuit
 
 ```
-Circuit StateTransition {
-    public inputs:
-        prev_state_hash: Field,
-        next_state_hash: Field,
-        transition_index: Field
+    Circuit StateTransition {
+        public inputs:
+            prev_state_hash: Field,
+            next_state_hash: Field,
+            transition_index: Field
 
-    private inputs:
-        prev_state: State,
-        next_state: State,
-        move: Move
+        private inputs:
+            prev_state: State,
+            next_state: State,
+            move: Move
 
-    constraints:
-        hash(prev_state) == prev_state_hash
-        hash(next_state) == next_state_hash
-        is_valid_transition(prev_state, next_state, move) == true
-        verify_turn(transition_index, prev_state.turn_mapping) == true
-}
+        constraints:
+            hash(prev_state) == prev_state_hash
+            hash(next_state) == next_state_hash
+            is_valid_transition(prev_state, next_state, move) == true
+            verify_turn(transition_index, prev_state.turn_mapping) == true
+    }
 ```
 
 This ensures that given a previous state and a move, the next state is correct and the right participant made the move.
@@ -237,21 +237,21 @@ This ensures that given a previous state and a move, the next state is correct a
 ### Fraud Proof Circuit
 
 ```
-Circuit FraudProof {
-    public inputs:
-        state_hash: Field,
-        claimed_next_hash: Field
+    Circuit FraudProof {
+        public inputs:
+            state_hash: Field,
+            claimed_next_hash: Field
 
-    private inputs:
-        state: State,
-        claimed_next: State,
-        move: Move
+        private inputs:
+            state: State,
+            claimed_next: State,
+            move: Move
 
-    constraints:
-        hash(state) == state_hash
-        hash(claimed_next) == claimed_next_hash
-        is_valid_transition(state, claimed_next, move) == false
-}
+        constraints:
+            hash(state) == state_hash
+            hash(claimed_next) == claimed_next_hash
+            is_valid_transition(state, claimed_next, move) == false
+    }
 ```
 
 This proves a purported transition is invalid.
@@ -260,17 +260,17 @@ This proves a purported transition is invalid.
 
 A recursive circuit can combine multiple `StateTransition` proofs:
 ```
-Circuit FinalProof {
-    public inputs:
-        initial_state_hash: Field,
-        final_state_hash: Field
+    Circuit FinalProof {
+        public inputs:
+            initial_state_hash: Field,
+            final_state_hash: Field
 
-    private inputs:
-        transition_proofs: [π_{st,1}, π_{st,2}, ... π_{st,f}]
+        private inputs:
+            transition_proofs: [π_{st,1}, π_{st,2}, ... π_{st,f}]
 
-    constraints:
-        // Recursively verify that each π_{st,i} is valid and chained correctly:
-        check_chaining(initial_state_hash, final_state_hash, transition_proofs)
+        constraints:
+            // Recursively verify that each π_{st,i} is valid and chained correctly:
+            check_chaining(initial_state_hash, final_state_hash, transition_proofs)
 }
 ```
 
