@@ -1,0 +1,38 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+---
+
+<MainLayout title="About">
+	<section class="about">
+		<h1>About Yeshilabs</h1>
+		<p class="terminal-text">> Building the future of privacy-preserving technology</p>
+		
+		<div class="content">
+			<p>Yeshilabs is at the forefront of zero-knowledge cryptography research and development. Our team consists of cryptographers, researchers, and engineers dedicated to advancing blockchain privacy and scalability.</p>
+			
+			<h2>Our Values</h2>
+			<ul>
+				<li>Privacy as a fundamental right</li>
+				<li>Open source collaboration</li>
+				<li>Academic rigor</li>
+				<li>Practical implementation</li>
+			</ul>
+		</div>
+	</section>
+
+	<style>
+		.terminal-text {
+			font-family: var(--font-mono);
+			margin: 2rem 0;
+		}
+
+		.content {
+			max-width: 800px;
+		}
+
+		ul {
+			list-style-type: '> ';
+			padding-left: 1.5rem;
+		}
+	</style>
+</MainLayout>

@@ -1,0 +1,40 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+---
+
+<MainLayout title="Contact">
+	<section class="contact">
+		<h1>Contact</h1>
+		<p class="terminal-text">> Get in touch with us</p>
+
+		<div class="contact-methods">
+			<div class="method">
+				<h2>Email</h2>
+				<p><a href="mailto:research@yeshilabs.com">research@yeshilabs.com</a></p>
+			</div>
+
+			<div class="method">
+				<h2>GitHub</h2>
+				<p><a href="https://github.com/yeshilabs" target="_blank">github.com/yeshilabs</a></p>
+			</div>
+		</div>
+	</section>
+
+	<style>
+		.contact-methods {
+			margin-top: 2rem;
+			display: grid;
+			gap: 2rem;
+		}
+
+		.method {
+			border: 1px solid var(--text-color);
+			padding: 1.5rem;
+		}
+
+		.terminal-text {
+			font-family: var(--font-mono);
+			margin: 2rem 0;
+		}
+	</style>
+</MainLayout>

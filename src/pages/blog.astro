@@ -1,0 +1,35 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+---
+
+<MainLayout title="Blog">
+	<section class="blog">
+		<h1>Blog</h1>
+		<div class="posts">
+			<article class="post">
+				<time>2024-03-14</time>
+				<h2>Understanding ZK-SNARKs</h2>
+				<p>An introduction to zero-knowledge succinct non-interactive arguments of knowledge.</p>
+				<a href="/blog/understanding-zk-snarks">Read more ></a>
+			</article>
+		</div>
+	</section>
+
+	<style>
+		.posts {
+			display: grid;
+			gap: 2rem;
+			margin-top: 2rem;
+		}
+
+		.post {
+			border: 1px solid var(--text-color);
+			padding: 1.5rem;
+		}
+
+		time {
+			opacity: 0.8;
+			font-size: 0.9em;
+		}
+	</style>
+</MainLayout>

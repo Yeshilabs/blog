@@ -1,0 +1,29 @@
+:root {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --font-mono: 'Courier New', Courier, monospace;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--font-mono);
+  margin: 0;
+  padding: 2rem;
+  line-height: 1.6;
+}
+
+h1, h2, h3 {
+  font-weight: normal;
+  letter-spacing: 0.1em;
+}
+
+a {
+  color: var(--text-color);
+  text-decoration: none;
+  border-bottom: 1px solid var(--text-color);
+}
+
+a:hover {
+  opacity: 0.8;
+} 

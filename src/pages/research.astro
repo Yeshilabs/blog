@@ -1,0 +1,33 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+---
+
+<MainLayout title="Research">
+	<section class="research">
+		<h1>Research</h1>
+		<div class="projects">
+			<article class="project">
+				<h2>ZK-Rollups</h2>
+				<p>Investigating scalable Layer 2 solutions using zero-knowledge proofs.</p>
+			</article>
+			
+			<article class="project">
+				<h2>Privacy-Preserving Smart Contracts</h2>
+				<p>Developing frameworks for confidential smart contract execution.</p>
+			</article>
+		</div>
+	</section>
+
+	<style>
+		.projects {
+			display: grid;
+			gap: 2rem;
+			margin-top: 2rem;
+		}
+
+		.project {
+			border: 1px solid var(--text-color);
+			padding: 1.5rem;
+		}
+	</style>
+</MainLayout>
