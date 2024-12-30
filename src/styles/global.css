@@ -3,7 +3,14 @@
 :root {
   --bg-color: #ffffff;
   --text-color: #000000;
+  --icon-color: #000000;
   --font-mono: 'Courier New', Courier, monospace;
+}
+
+[data-theme='dark'] {
+  --bg-color: #000000;
+  --text-color: #ffffff;
+  --icon-color: #ffffff;
 }
 
 body {
@@ -40,6 +47,7 @@ nav {
 
 .logo {
   font-size: 1.5rem;
+  text-transform: uppercase;
 }
 
 .menu-toggle {
@@ -48,11 +56,47 @@ nav {
   border: none;
   font-size: 1.5rem;
   cursor: pointer;
+  color: var(--icon-color);
 }
 
 .nav-links {
   display: flex;
   gap: 2rem;
+}
+
+.theme-switch-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.theme-toggle {
+  display: none;
+}
+
+.theme-switch {
+  width: 40px;
+  height: 20px;
+  background: var(--text-color);
+  border-radius: 20px;
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.theme-switch::before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  background: var(--bg-color);
+  border-radius: 50%;
+  transition: transform 0.3s;
+}
+
+.theme-toggle:checked + .theme-switch::before {
+  transform: translateX(20px);
 }
 
 @media (max-width: 768px) {

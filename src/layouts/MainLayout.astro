@@ -25,6 +25,10 @@ import '../styles/global.css';
 					<a href="/blog">Blog</a>
 					<a href="/contact">Contact</a>
 				</div>
+				<div class="theme-switch-wrapper">
+					<input type="checkbox" id="theme-toggle" class="theme-toggle" aria-label="Toggle theme" />
+					<label for="theme-toggle" class="theme-switch"></label>
+				</div>
 			</nav>
 		</header>
 
@@ -36,9 +40,31 @@ import '../styles/global.css';
 			document.addEventListener('DOMContentLoaded', () => {
 				const menuToggle = document.querySelector('.menu-toggle');
 				const navLinks = document.querySelector('.nav-links');
+				const themeToggle = document.getElementById('theme-toggle');
+				const htmlElement = document.documentElement;
+
+				// Check for stored theme preference
+				let currentTheme = localStorage.getItem('theme');
+
+				// If no stored preference, use system preference
+				if (!currentTheme) {
+					currentTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+				}
+
+				// Set the initial theme
+				htmlElement.setAttribute('data-theme', currentTheme);
+				themeToggle.checked = currentTheme === 'dark';
+				console.log(`Initial theme set to: ${currentTheme}`); // Debugging line
 
 				menuToggle.addEventListener('click', () => {
 					navLinks.classList.toggle('active');
+				});
+
+				themeToggle.addEventListener('change', () => {
+					const newTheme = themeToggle.checked ? 'dark' : 'light';
+					htmlElement.setAttribute('data-theme', newTheme);
+					localStorage.setItem('theme', newTheme);
+					console.log(`Theme switched to: ${newTheme}`); // Debugging line
 				});
 			});
 		</script>
